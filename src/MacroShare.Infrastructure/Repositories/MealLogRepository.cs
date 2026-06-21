@@ -51,4 +51,18 @@ public class MealLogRepository : IMealLogRepository
 
     public async Task AddAsync(MealLog mealLog, CancellationToken cancellationToken = default)
         => await _db.MealLogs.AddAsync(mealLog, cancellationToken);
+
+    public async Task<IReadOnlyList<MealLog>> GetLogsForDateAsync(
+        int householdId,
+        DateOnly date,
+        CancellationToken cancellationToken = default)
+    {
+        return await _db.MealLogs
+            .Where(m => m.HouseholdId == householdId && m.Date == date)
+            .Include(m => m.Recipe)
+            .Include(m => m.Entries)
+                .ThenInclude(e => e.AppUser)
+            .OrderBy(m => m.MealType)
+            .ToListAsync(cancellationToken);
+    }
 }

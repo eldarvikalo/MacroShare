@@ -1,7 +1,12 @@
 using MacroShare.Api.Extensions;
 using MacroShare.Application.Common.Interfaces;
+using MacroShare.Application.Features.Households.AddPantryItem;
 using MacroShare.Application.Features.Households.GetHouseholdMembers;
+using MacroShare.Application.Features.Households.GetHouseholdPantry;
+using MacroShare.Application.Features.Households.RemovePantryItem;
+using MacroShare.Application.Features.Households.UpdatePantryItem;
 using MacroShare.Application.Features.Meals.GetMealSuggestions;
+using MacroShare.Application.Features.Meals.GetTodaysMeals;
 using MacroShare.Domain.Enums;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -32,6 +37,70 @@ public class HouseholdsController : ControllerBase
         _currentUser.EnsureHouseholdAccess(householdId);
         var members = await _sender.Send(new GetHouseholdMembersQuery(householdId), cancellationToken);
         return Ok(members);
+    }
+
+    /// <summary>Returns all ingredients currently stocked in the household pantry.</summary>
+    [HttpGet("{householdId:int}/pantry")]
+    public async Task<ActionResult<List<PantryItemDto>>> GetPantry(
+        int householdId,
+        CancellationToken cancellationToken)
+    {
+        _currentUser.EnsureHouseholdAccess(householdId);
+        var items = await _sender.Send(new GetHouseholdPantryQuery(householdId), cancellationToken);
+        return Ok(items);
+    }
+
+    /// <summary>Adds an ingredient to the pantry (or increases stock if already present).</summary>
+    [HttpPost("{householdId:int}/pantry/items")]
+    public async Task<ActionResult<PantryItemDto>> AddPantryItem(
+        int householdId,
+        [FromBody] UpsertPantryItemRequest request,
+        CancellationToken cancellationToken)
+    {
+        _currentUser.EnsureHouseholdAccess(householdId);
+        var item = await _sender.Send(
+            new AddPantryItemCommand(householdId, request.IngredientId, request.QuantityGrams),
+            cancellationToken);
+        return Ok(item);
+    }
+
+    /// <summary>Sets the exact quantity for a pantry ingredient.</summary>
+    [HttpPut("{householdId:int}/pantry/items/{ingredientId:int}")]
+    public async Task<ActionResult<PantryItemDto>> UpdatePantryItem(
+        int householdId,
+        int ingredientId,
+        [FromBody] UpdatePantryQuantityRequest request,
+        CancellationToken cancellationToken)
+    {
+        _currentUser.EnsureHouseholdAccess(householdId);
+        var item = await _sender.Send(
+            new UpdatePantryItemCommand(householdId, ingredientId, request.QuantityGrams),
+            cancellationToken);
+        return Ok(item);
+    }
+
+    /// <summary>Removes an ingredient from the household pantry.</summary>
+    [HttpDelete("{householdId:int}/pantry/items/{ingredientId:int}")]
+    public async Task<IActionResult> RemovePantryItem(
+        int householdId,
+        int ingredientId,
+        CancellationToken cancellationToken)
+    {
+        _currentUser.EnsureHouseholdAccess(householdId);
+        await _sender.Send(new RemovePantryItemCommand(householdId, ingredientId), cancellationToken);
+        return NoContent();
+    }
+
+    /// <summary>Returns meals logged today for the household dashboard timeline.</summary>
+    [HttpGet("{householdId:int}/meals/today")]
+    public async Task<ActionResult<List<TodaysMealDto>>> GetTodaysMeals(
+        int householdId,
+        [FromQuery] DateOnly? date,
+        CancellationToken cancellationToken)
+    {
+        _currentUser.EnsureHouseholdAccess(householdId);
+        var meals = await _sender.Send(new GetTodaysMealsQuery(householdId, date), cancellationToken);
+        return Ok(meals);
     }
 
     /// <summary>Returns up to 50 pantry-matched, protein-prioritized meal suggestions.</summary>

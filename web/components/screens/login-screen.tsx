@@ -1,25 +1,38 @@
 "use client"
 
 import * as React from "react"
-import { useApp } from "@/components/app-context"
+import { useAuth } from "@/auth/AuthContext"
+import { toErrorMessage } from "@/lib/api/client"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Logo } from "@/components/logo"
-import { MEMBERS } from "@/lib/members"
 
 export function LoginScreen() {
-  const { login } = useApp()
+  const { login } = useAuth()
   const [email, setEmail] = React.useState("eldar@macroshare.app")
-  const [password, setPassword] = React.useState("CutBelly2024!")
+  const [password, setPassword] = React.useState("EldarDina18041006!")
   const [error, setError] = React.useState("")
+  const [loading, setLoading] = React.useState(false)
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    const ok = login(email)
-    if (!ok) setError("No account found for that email. Try a demo account below.")
+    setLoading(true)
+    setError("")
+    try {
+      await login(email.trim(), password)
+    } catch (err) {
+      setError(toErrorMessage(err))
+    } finally {
+      setLoading(false)
+    }
   }
+
+  const demoAccounts = [
+    { name: "Eldar", email: "eldar@macroshare.app" },
+    { name: "Dina", email: "dina@macroshare.app" },
+  ]
 
   return (
     <div className="relative flex min-h-svh items-center justify-center px-5 py-10">
@@ -49,6 +62,7 @@ export function LoginScreen() {
                   }}
                   placeholder="you@macroshare.app"
                   autoComplete="email"
+                  required
                 />
               </div>
               <div className="flex flex-col gap-1.5">
@@ -60,11 +74,12 @@ export function LoginScreen() {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
                   autoComplete="current-password"
+                  required
                 />
               </div>
               {error && <p className="text-sm text-red-400">{error}</p>}
-              <Button type="submit" size="lg" className="mt-1 w-full">
-                Sign in
+              <Button type="submit" size="lg" className="mt-1 w-full" disabled={loading}>
+                {loading ? "Signing in…" : "Sign in"}
               </Button>
             </form>
           </CardContent>
@@ -75,9 +90,10 @@ export function LoginScreen() {
             Demo accounts
           </p>
           <div className="flex flex-col gap-2">
-            {MEMBERS.map((m) => (
+            {demoAccounts.map((m) => (
               <button
-                key={m.id}
+                key={m.email}
+                type="button"
                 onClick={() => {
                   setEmail(m.email)
                   setError("")
@@ -90,7 +106,7 @@ export function LoginScreen() {
             ))}
           </div>
           <p className="mt-3 text-xs text-slate-500">
-            Password: <span className="font-mono text-slate-400">CutBelly2024!</span>
+            Password: <span className="font-mono text-slate-400">EldarDina18041006!</span>
           </p>
         </div>
       </div>

@@ -1,5 +1,6 @@
 "use client"
 
+import { useAuth } from "@/auth/AuthContext"
 import { useApp } from "@/components/app-context"
 import { BottomNav } from "@/components/bottom-nav"
 import { LoginScreen } from "@/components/screens/login-screen"
@@ -10,7 +11,16 @@ import { AccountScreen } from "@/components/screens/account-screen"
 import { SettingsScreen } from "@/components/screens/settings-screen"
 
 export default function Page() {
-  const { user, activeTab } = useApp()
+  const { user, isLoading } = useAuth()
+  const { activeTab } = useApp()
+
+  if (isLoading) {
+    return (
+      <div className="flex min-h-svh items-center justify-center text-slate-500">
+        Loading MacroShare…
+      </div>
+    )
+  }
 
   if (!user) {
     return <LoginScreen />

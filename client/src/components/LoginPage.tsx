@@ -69,7 +69,7 @@ export function LoginPage() {
           <p className="font-semibold text-slate-700">Demo accounts</p>
           <p className="mt-1">Eldar: eldar@macroshare.app</p>
           <p>Dina: dina@macroshare.app</p>
-          <p className="mt-1">Password: CutBelly2024!</p>
+          <p className="mt-1">Password: EldarDina18041006!</p>
         </div>
       </div>
     </div>

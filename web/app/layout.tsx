@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
+import { AuthProvider } from "@/auth/AuthContext"
 import { AppProvider } from "@/components/app-context"
 import { ToastProvider } from "@/components/toast"
 
@@ -28,9 +29,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`dark bg-background ${inter.variable}`}>
       <body className="font-sans antialiased">
-        <AppProvider>
-          <ToastProvider>{children}</ToastProvider>
-        </AppProvider>
+        <AuthProvider>
+          <AppProvider>
+            <ToastProvider>{children}</ToastProvider>
+          </AppProvider>
+        </AuthProvider>
       </body>
     </html>
   )
