@@ -1,0 +1,23 @@
+# .NET
+bin/
+obj/
+*.user
+.vs/
+
+# Rider / IDE
+.idea/
+
+# Node / frontend
+node_modules/
+client/dist/
+client/.vite/
+
+# Env / local
+*.local
+
+# Large data dumps (Open Food Facts export, etc.)
+en.openfoodfacts.org.products.csv
+*.openfoodfacts.org.products.csv
+
+# OS
+.DS_Store

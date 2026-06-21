@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BA837FC6-AE64-4701-B5AD-ED1C6732527D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MacroShare.Domain", "src\MacroShare.Domain\MacroShare.Domain.csproj", "{41A2AEF9-9FFA-497D-BC1D-1948E7525485}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MacroShare.Application", "src\MacroShare.Application\MacroShare.Application.csproj", "{19F38EE4-A92B-42E2-B94A-EEC25F4CBC09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MacroShare.Infrastructure", "src\MacroShare.Infrastructure\MacroShare.Infrastructure.csproj", "{5C4FE055-E9D8-4C8E-A507-F1533B57222A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MacroShare.Api", "src\MacroShare.Api\MacroShare.Api.csproj", "{82921C88-0CF0-43DB-9617-AF5534A1E75F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{8C6AB948-9477-45EC-9188-6D223CC12143}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MacroShare.Domain.Tests", "tests\MacroShare.Domain.Tests\MacroShare.Domain.Tests.csproj", "{B94CFBE1-E296-487D-B418-C805C4223036}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{41A2AEF9-9FFA-497D-BC1D-1948E7525485}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41A2AEF9-9FFA-497D-BC1D-1948E7525485}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41A2AEF9-9FFA-497D-BC1D-1948E7525485}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41A2AEF9-9FFA-497D-BC1D-1948E7525485}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19F38EE4-A92B-42E2-B94A-EEC25F4CBC09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19F38EE4-A92B-42E2-B94A-EEC25F4CBC09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19F38EE4-A92B-42E2-B94A-EEC25F4CBC09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19F38EE4-A92B-42E2-B94A-EEC25F4CBC09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C4FE055-E9D8-4C8E-A507-F1533B57222A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C4FE055-E9D8-4C8E-A507-F1533B57222A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C4FE055-E9D8-4C8E-A507-F1533B57222A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C4FE055-E9D8-4C8E-A507-F1533B57222A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82921C88-0CF0-43DB-9617-AF5534A1E75F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82921C88-0CF0-43DB-9617-AF5534A1E75F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82921C88-0CF0-43DB-9617-AF5534A1E75F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82921C88-0CF0-43DB-9617-AF5534A1E75F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B94CFBE1-E296-487D-B418-C805C4223036}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B94CFBE1-E296-487D-B418-C805C4223036}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B94CFBE1-E296-487D-B418-C805C4223036}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B94CFBE1-E296-487D-B418-C805C4223036}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{41A2AEF9-9FFA-497D-BC1D-1948E7525485} = {BA837FC6-AE64-4701-B5AD-ED1C6732527D}
+		{19F38EE4-A92B-42E2-B94A-EEC25F4CBC09} = {BA837FC6-AE64-4701-B5AD-ED1C6732527D}
+		{5C4FE055-E9D8-4C8E-A507-F1533B57222A} = {BA837FC6-AE64-4701-B5AD-ED1C6732527D}
+		{82921C88-0CF0-43DB-9617-AF5534A1E75F} = {BA837FC6-AE64-4701-B5AD-ED1C6732527D}
+		{B94CFBE1-E296-487D-B418-C805C4223036} = {8C6AB948-9477-45EC-9188-6D223CC12143}
+	EndGlobalSection
+EndGlobal
