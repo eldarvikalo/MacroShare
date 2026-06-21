@@ -29,3 +29,25 @@ export function ScreenHeader({ subtitle }: { subtitle?: string }) {
 }
 
 export const TODAY_LABEL = TODAY
+
+export function SectionTitle({
+  icon,
+  title,
+  subtitle,
+}: {
+  icon?: React.ReactNode
+  title: string
+  subtitle?: string
+}) {
+  return (
+    <div className="-mt-1 flex items-center gap-3">
+      {icon && (
+        <span className="flex size-10 items-center justify-center rounded-xl bg-primary/10">{icon}</span>
+      )}
+      <div>
+        <h1 className="text-2xl font-bold tracking-tight">{title}</h1>
+        {subtitle && <p className="text-sm text-muted-foreground">{subtitle}</p>}
+      </div>
+    </div>
+  )
+}
