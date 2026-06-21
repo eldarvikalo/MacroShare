@@ -11,8 +11,8 @@ import { Logo } from "@/components/logo"
 
 export function LoginScreen() {
   const { login } = useAuth()
-  const [email, setEmail] = React.useState("eldar@macroshare.app")
-  const [password, setPassword] = React.useState("EldarDina18041006!")
+  const [email, setEmail] = React.useState("")
+  const [password, setPassword] = React.useState("")
   const [error, setError] = React.useState("")
   const [loading, setLoading] = React.useState(false)
 
@@ -28,11 +28,6 @@ export function LoginScreen() {
       setLoading(false)
     }
   }
-
-  const demoAccounts = [
-    { name: "Eldar", email: "eldar@macroshare.app" },
-    { name: "Dina", email: "dina@macroshare.app" },
-  ]
 
   return (
     <div className="relative flex min-h-svh items-center justify-center px-5 py-10">
@@ -60,7 +55,6 @@ export function LoginScreen() {
                     setEmail(e.target.value)
                     setError("")
                   }}
-                  placeholder="you@macroshare.app"
                   autoComplete="email"
                   required
                 />
@@ -72,7 +66,6 @@ export function LoginScreen() {
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="••••••••"
                   autoComplete="current-password"
                   required
                 />
@@ -84,31 +77,6 @@ export function LoginScreen() {
             </form>
           </CardContent>
         </Card>
-
-        <div className="mt-5 rounded-2xl border border-slate-800 bg-slate-900/60 p-4">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500">
-            Demo accounts
-          </p>
-          <div className="flex flex-col gap-2">
-            {demoAccounts.map((m) => (
-              <button
-                key={m.email}
-                type="button"
-                onClick={() => {
-                  setEmail(m.email)
-                  setError("")
-                }}
-                className="flex items-center justify-between rounded-xl bg-slate-800/60 px-3 py-2 text-left transition-colors hover:bg-slate-800 active:scale-[0.99]"
-              >
-                <span className="text-sm font-medium text-slate-200">{m.name}</span>
-                <span className="text-xs text-slate-400">{m.email}</span>
-              </button>
-            ))}
-          </div>
-          <p className="mt-3 text-xs text-slate-500">
-            Password: <span className="font-mono text-slate-400">EldarDina18041006!</span>
-          </p>
-        </div>
       </div>
     </div>
   )

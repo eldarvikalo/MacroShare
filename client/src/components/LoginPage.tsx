@@ -39,7 +39,6 @@ export function LoginPage() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="eldar@macroshare.app"
               className="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
               required
             />
@@ -64,13 +63,6 @@ export function LoginPage() {
         </form>
 
         {error && <p className="mt-4 text-sm font-medium text-red-600">{error}</p>}
-
-        <div className="mt-6 rounded-2xl bg-slate-50 p-4 text-xs text-slate-500">
-          <p className="font-semibold text-slate-700">Demo accounts</p>
-          <p className="mt-1">Eldar: eldar@macroshare.app</p>
-          <p>Dina: dina@macroshare.app</p>
-          <p className="mt-1">Password: EldarDina18041006!</p>
-        </div>
       </div>
     </div>
   );
