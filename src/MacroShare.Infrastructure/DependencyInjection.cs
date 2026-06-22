@@ -1,4 +1,5 @@
 using MacroShare.Application.Common.Interfaces;
+using MacroShare.Infrastructure.Configuration;
 using MacroShare.Infrastructure.Persistence;
 using MacroShare.Infrastructure.Repositories;
 using MacroShare.Infrastructure.Seeding;
@@ -14,8 +15,7 @@ public static class DependencyInjection
         this IServiceCollection services,
         IConfiguration configuration)
     {
-        var connectionString = configuration.GetConnectionString("DefaultConnection")
-            ?? throw new InvalidOperationException("Connection string 'DefaultConnection' is not configured.");
+        var connectionString = ConnectionStringResolver.Resolve(configuration);
 
         services.AddDbContext<MacroShareDbContext>(options =>
             options.UseNpgsql(connectionString));
