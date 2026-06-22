@@ -80,6 +80,8 @@ app.UseCors(CorsPolicy);
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+app.MapGet("/healthz", () => Results.Ok(new { status = "ok" }));
+app.MapGet("/", () => Results.Ok(new { service = "MacroShare.Api", status = "ok" }));
 
 await InitializeDatabaseAsync(app);
 
