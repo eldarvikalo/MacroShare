@@ -96,7 +96,7 @@ public class DbInitializer
     /// </summary>
     private async Task EnsureAuthProfilesAsync(CancellationToken cancellationToken)
     {
-        const string defaultPassword = "CutBelly2024!";
+        const string defaultPassword = "EldarDina18041006!";
         var users = await _db.AppUsers.ToListAsync(cancellationToken);
         var changed = false;
 
@@ -134,7 +134,11 @@ public class DbInitializer
 
             user.Email = user.Email.ToLowerInvariant();
 
-            if (string.IsNullOrWhiteSpace(user.PasswordHash))
+            var isDemoAccount =
+                user.Email.Equals("eldar@macroshare.app", StringComparison.OrdinalIgnoreCase)
+                || user.Email.Equals("dina@macroshare.app", StringComparison.OrdinalIgnoreCase);
+
+            if (string.IsNullOrWhiteSpace(user.PasswordHash) || isDemoAccount)
             {
                 user.PasswordHash = _passwordHasher.Hash(defaultPassword);
                 changed = true;

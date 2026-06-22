@@ -17,4 +17,9 @@ public interface IMealLogRepository
         CancellationToken cancellationToken = default);
 
     Task AddAsync(MealLog mealLog, CancellationToken cancellationToken = default);
+
+    Task<IReadOnlyList<MealLog>> GetLogsForDateAsync(
+        int householdId,
+        DateOnly date,
+        CancellationToken cancellationToken = default);
 }
