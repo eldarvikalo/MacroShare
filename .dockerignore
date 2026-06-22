@@ -1,0 +1,13 @@
+.git
+.github
+**/.vs
+**/bin
+**/obj
+**/node_modules
+web/
+client/
+tests/
+**/.next
+*.md
+docker-compose.yml
+en.openfoodfacts.org.products.csv
